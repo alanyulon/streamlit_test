@@ -8,7 +8,7 @@ import streamlit as st
 # CONFIGURAÇÃO INICIAL
 st.set_page_config(layout="wide", page_title="PUA Coach")
 load_dotenv()
-openai_api_key = os.getenv('OPENAI_API_KEY')
+openai_api_key = st.secrets['OPENAI_API_KEY']
 client = OpenAI(api_key=openai_api_key)
 
 # FUNÇÕES DE CACHE (evita recomputar recursos pesados)
