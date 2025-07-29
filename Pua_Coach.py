@@ -14,8 +14,8 @@ client = OpenAI(api_key=openai_api_key)
 # FUNÇÕES DE CACHE (evita recomputar recursos pesados)
 @st.cache_resource
 def criar_vector_store_e_assistant():
-    vector_store_id = os.getenv('vector_store_id')
-    assistant_id = os.getenv('assistant_id')
+    vector_store_id = st.secrets['vector_store_id']
+    assistant_id = st.secrets['assistant_id']
     return vector_store_id, assistant_id
 
 @st.cache_resource
