@@ -14,27 +14,8 @@ client = OpenAI(api_key=openai_api_key)
 # FUNÇÕES DE CACHE (evita recomputar recursos pesados)
 @st.cache_resource
 def criar_vector_store_e_assistant():
-    # caminho_pasta_book = Path(r"C:\Users\alany\Documents\_Sources\PUA\Books")
-    # caminho_pasta_transcriptions = Path(r"C:\Users\alany\Documents\_Sources\PUA\Transcriptions")
-    # files = [open(f, 'rb') for f in caminho_pasta_book.glob('*.pdf')] + [open(f, 'rb') for f in caminho_pasta_transcriptions.glob('*.pdf')]
-    vector_store_id = 'vs_68875d895b688191a94050b8fa0c081f'
-    assistant_id = 'asst_IGhIG2TjTC0vXImdAvJ5amhn'
-
-    # vector_store = client.vector_stores.create(name='PUA_Sources')
-    # client.vector_stores.file_batches.upload_and_poll(
-    #     vector_store_id=vector_store_id,
-    #     files=files
-    # )
-    # assistant = client.beta.assistants.create(
-    #     name='Mistery',
-    #     instructions=(
-    #         "Você é um instrutor de artes de sedução. Responda apenas com base nesse tema,\
-    #          utilizando as apostilas fornecidas. Seja criativo e objetivo."
-    #     ),
-    #     tools=[{'type': 'file_search'}],
-    #     tool_resources={'file_search': {'vector_store_ids': [vector_store_id]}},
-    #     model='gpt-4o'
-    # )
+    vector_store_id = os.getenv('vector_store_id')
+    assistant_id = os.getenv('assistant_id')
     return vector_store_id, assistant_id
 
 @st.cache_resource
@@ -79,7 +60,7 @@ def obter_resposta_assistente(thread, assistant_id):
 
 # MAIN FUNCTION
 def main():
-    st.title("PUA Coach")
+    st.title("Mistery Coach")
 
     # Inicializações com cache
     vector_store, assistant_id = criar_vector_store_e_assistant()
