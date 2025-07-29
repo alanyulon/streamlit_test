@@ -1,0 +1,2 @@
+openai == 1.97.0
+Streamlit == 1.97.0
